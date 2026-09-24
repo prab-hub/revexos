@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevExOS Content Map</title>
+<meta name="description" content="How revexos.com is organized: what the blog, platform pages, case studies, free tools, guides and courses are each for, and how they connect around the quote-to-cash cycle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --ink:#1c1b19; --muted:#5f5c55; --line:#e6e2d9;
+  --accent:#2f5bd3; --accent-soft:#e8eefc;
+  --c1:#2f5bd3; --c2:#0f8a6a; --c3:#b4541c; --c4:#7a4bc2; --c5:#a6356b; --c6:#5b6b17;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141412; --surface:#1d1c19; --ink:#ecebe6; --muted:#a3a097; --line:#2f2d29;
+    --accent:#8eaaf5; --accent-soft:#1f2740;
+    --c1:#8eaaf5; --c2:#4fc9a5; --c3:#ec9a63; --c4:#b99af0; --c5:#ec8ab6; --c6:#b9cb6a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141412; --surface:#1d1c19; --ink:#ecebe6; --muted:#a3a097; --line:#2f2d29;
+  --accent:#8eaaf5; --accent-soft:#1f2740;
+  --c1:#8eaaf5; --c2:#4fc9a5; --c3:#ec9a63; --c4:#b99af0; --c5:#ec8ab6; --c6:#b9cb6a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);z-index:5}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.brand{font-weight:700;color:var(--ink)}
+nav.toc{display:flex;gap:18px;font-size:14px;overflow-x:auto;white-space:nowrap}
+nav.toc a{color:var(--muted)}
+.hero{padding:72px 0 40px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.1;letter-spacing:-.02em;margin:12px 0 16px}
+h2{font-size:clamp(24px,3.2vw,30px);letter-spacing:-.01em;margin:0 0 8px;line-height:1.2}
+h3{font-size:18px;margin:0 0 6px}
+.lede{font-size:19px;color:var(--muted);max-width:720px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.sub{color:var(--muted);max-width:720px;margin:0 0 28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{padding:6px 0;border-bottom:1px dashed var(--line)}
+ul.clean li:last-child{border-bottom:0}
+
+/* Q2C spine */
+.spine{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;position:relative}
+.stage b{display:block;font-size:15px}
+.stage span{font-size:12px;color:var(--muted);line-height:1.35;display:block;margin-top:4px}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:6px;height:2px;background:var(--line)}
+@media (max-width:760px){.spine{grid-template-columns:1fr 1fr}.stage::after{display:none}}
+
+/* content types overview */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.type{border-radius:12px;padding:16px;border:1px solid var(--line);background:var(--surface);border-top:4px solid var(--c)}
+.type .n{font-size:28px;font-weight:700;color:var(--c);line-height:1}
+.type h3{margin-top:8px}
+.type p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+
+/* journey */
+.journey{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.step .k{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.step h3{font-size:16px;margin:4px 0}
+.step p{margin:0;font-size:14px;color:var(--muted)}
+
+/* anatomy */
+.anatomy{counter-reset:a;margin:0;padding:0;list-style:none}
+.anatomy li{counter-increment:a;padding:8px 0 8px 36px;position:relative;border-bottom:1px dashed var(--line)}
+.anatomy li:last-child{border-bottom:0}
+.anatomy li::before{content:counter(a);position:absolute;left:0;top:9px;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;display:grid;place-items:center}
+.anatomy b{display:block}
+.anatomy span{color:var(--muted);font-size:14px}
+
+.section-head{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 12px}
+
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="https://revexos.com">RevExOS</a>
+    <nav class="toc">
+      <a href="#spine">Q2C spine</a>
+      <a href="#types">Content types</a>
+      <a href="#blog">Blog</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#case-studies">Case studies</a>
+      <a href="#tools">Free tools</a>
+      <a href="#guides">Guides and courses</a>
+      <a href="#journey">How it connects</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Content map</div>
+  <h1>How revexos.com is organized</h1>
+  <p class="lede">revexos.com is built to be a reference on quote-to-cash (Q2C): the path from a quote to cash in the bank. Each section of the site does one job. This page explains each section, what it is meant to do, and how the sections link together.</p>
+  <p class="muted small">Written for contributors, partners, and anyone trying to find their way around the site. Live site: <a href="https://revexos.com">revexos.com</a></p>
+</div>
+
+<section id="spine">
+  <h2>Everything hangs off the Q2C cycle</h2>
+  <p class="sub">The seven quote-to-cash stages are the site's shared vocabulary. Every blog post, platform page, tool and case study covers one or more of them. That makes it easy to see where a topic fits and what to read next.</p>
+  <div class="spine">
+    <div class="stage"><b>Lead</b><span>Capturing and qualifying demand</span></div>
+    <div class="stage"><b>Quote</b><span>Pricing, proposals, CPQ</span></div>
+    <div class="stage"><b>Contract</b><span>Agreement and approval</span></div>
+    <div class="stage"><b>Order</b><span>Booking and provisioning</span></div>
+    <div class="stage"><b>Invoice</b><span>Billing and delivery</span></div>
+    <div class="stage"><b>Cash</b><span>Payments, collections, AR</span></div>
+    <div class="stage"><b>Revenue</b><span>Recognition and reporting</span></div>
+  </div>
+</section>
+
+<section id="types">
+  <h2>Six content types, six jobs</h2>
+  <p class="sub">A reader meets the same problem in different forms depending on what they need right now: understanding, a tool, proof, or help.</p>
+  <div class="types">
+    <a class="type" href="#blog" style="--c:var(--c1)"><div class="n">62</div><h3>Blog</h3><p>Explains. Answers the questions finance and RevOps teams ask.</p></a>
+    <a class="type" href="#platforms" style="--c:var(--c2)"><div class="n">13</div><h3>Platforms</h3><p>Orients. One page per system in the Q2C stack.</p></a>
+    <a class="type" href="#case-studies" style="--c:var(--c3)"><div class="n">20</div><h3>Case studies</h3><p>Proves. Real builds with the before, after, stack and results.</p></a>
+    <a class="type" href="#tools" style="--c:var(--c4)"><div class="n">22</div><h3>Free tools</h3><p>Does. Solves one task in the browser right away.</p></a>
+    <a class="type" href="#guides" style="--c:var(--c5)"><div class="n">8</div><h3>Guides and courses</h3><p>Goes deeper. Playbooks, checklists and courses you can keep.</p></a>
+    <a class="type" href="#services" style="--c:var(--c6)"><div class="n">6</div><h3>Services</h3><p>Offers help. Done-for-you Q2C automation work.</p></a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-head" style="--c:var(--c1)"><span class="dot"></span><h2>Blog</h2></div>
+  <p class="sub">The blog explains quote-to-cash in depth. Each post answers one real question a CFO, controller, founder or RevOps lead would type into Google or ask an AI assistant. Posts are specific and practical, not sales pitches. <a href="https://revexos.com/blog">revexos.com/blog</a></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Four categories (post format)</h3>
+      <ul class="clean small">
+        <li><span class="tag">best-practices</span> Explainers, "X vs Y" comparisons, "Best tools for..." roundups and decision guides. Helps readers understand a topic and choose.</li>
+        <li><span class="tag">tutorials</span> Step-by-step builds: automations in n8n, dashboards with Claude Cowork, export guides for QuickBooks and Xero. Helps readers do it themselves.</li>
+        <li><span class="tag">product-updates</span> Launches and changes to RevExOS tools.</li>
+        <li><span class="tag">company-news</span> Why RevExOS exists and how we think about the Q2C problem.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Topic clusters (post subject)</h3>
+      <ul class="clean small">
+        <li><b>AR and collections</b> DSO, dunning, collections emails, AR by industry</li>
+        <li><b>Invoicing</b> generators, invoice parsing and OCR, PO matching, exports</li>
+        <li><b>Quotes and proposals</b> templates, quote vs estimate, scope control</li>
+        <li><b>Revenue recognition</b> ASC 606 for services, SaaS and AI pricing</li>
+        <li><b>Usage and AI billing</b> metering, token billing, Stripe/Metronome/Orb</li>
+        <li><b>Billing platforms</b> SAP BRIM, Zuora, Salesforce Revenue Cloud, Merchant of Record</li>
+        <li><b>AI in Q2C</b> Claude workflows, prompts and playbooks for finance teams</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>What every post includes</h3>
+    <ol class="anatomy">
+      <li><b>A question-shaped title</b><span>Matches how people search and how they ask AI assistants.</span></li>
+      <li><b>The answer first</b><span>A direct answer at the top, followed by the detail, examples and edge cases.</span></li>
+      <li><b>Specifics over generalities</b><span>Real numbers, named tools, actual workflows and prompts.</span></li>
+      <li><b>FAQ section</b><span>Short, citable answers marked up as FAQ schema so they can surface in search results and AI answers.</span></li>
+      <li><b>Links onward</b><span>To the matching platform page, the free tool that does the task, and a related case study.</span></li>
+      <li><b>A unique cover image</b><span>Every post gets its own image. Covers are never shared between posts.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <div class="section-head" style="--c:var(--c2)"><span class="dot"></span><h2>Platform pages</h2></div>
+  <p class="sub">Most readers start from the software they already use. Each platform page explains where that system fits in the Q2C cycle, where it usually breaks, and gathers everything on the site about it in one place. <a href="https://revexos.com/platforms">revexos.com/platforms</a></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Platforms covered</h3>
+      <div class="tablewrap" style="border:0;padding:0">
+      <table>
+        <tr><th>Category</th><th>Platforms</th></tr>
+        <tr><td>Accounting</td><td>QuickBooks Online, Xero, Zoho Books</td></tr>
+        <tr><td>CRM</td><td>HubSpot, Salesforce</td></tr>
+        <tr><td>ERP</td><td>NetSuite, SAP</td></tr>
+        <tr><td>Billing and payments</td><td>Stripe, Zuora</td></tr>
+        <tr><td>Workflow automation</td><td>n8n, Make.com, Zapier</td></tr>
+        <tr><td>AI model</td><td>Claude</td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>What every platform page includes</h3>
+      <ol class="anatomy">
+        <li><b>One-line summary and Q2C stages</b><span>What the system is and which stages it owns. Automation and AI tools cover the whole cycle.</span></li>
+        <li><b>Where it fits in quote-to-cash</b><span>Its role next to the rest of the stack.</span></li>
+        <li><b>What breaks</b><span>The common failure points: sync gaps, mismatched records, manual steps.</span></li>
+        <li><b>What we have built with it</b><span>The case studies that used this platform.</span></li>
+        <li><b>Posts covering it</b><span>Blog posts that discuss the platform in depth.</span></li>
+        <li><b>FAQs and related platforms</b><span>Quick answers, plus the systems it is usually paired with.</span></li>
+      </ol>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:14px">Rule of thumb: a post is linked from a platform page when it mentions that platform three or more times, so the page only lists posts that cover the platform properly.</p>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <div class="section-head" style="--c:var(--c3)"><span class="dot"></span><h2>Case studies</h2></div>
+  <p class="sub">Case studies back up the blog. Each one describes an automation we actually built: what the process looked like before and after, the tools used, and the results. <a href="https://revexos.com/case-studies">revexos.com/case-studies</a></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Two groups</h3>
+      <p class="small"><span class="tag">Order-to-cash</span> <b>7 studies</b> on the core Q2C work: invoice and PO parsing, invoice generation, payment reconciliation, dispute management, end-to-end AR, order fulfilment, and AI knowledge bases built on financial data.</p>
+      <p class="small"><span class="tag">Broader automation</span> <b>13 studies</b> covering related automation work: cold email and calling, lead generation, content pipelines, AI agents, CRM and data sync, reporting, and infrastructure. They show the range of the team.</p>
+      <p class="small muted">A toggle on the case studies page switches between the two groups.</p>
+    </div>
+    <div class="card">
+      <h3>What every case study includes</h3>
+      <ol class="anatomy">
+        <li><b>Before</b><span>The manual process and what it cost.</span></li>
+        <li><b>After</b><span>What runs automatically now.</span></li>
+        <li><b>Stack</b><span>The tools used. This is how a case study shows up on platform pages.</span></li>
+        <li><b>How it works</b><span>The workflow, step by step.</span></li>
+        <li><b>Results</b><span>Measured outcomes, such as hours saved or faster payment.</span></li>
+        <li><b>Related links</b><span>The blog posts and tools for the same problem.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-head" style="--c:var(--c4)"><span class="dot"></span><h2>Free tools</h2></div>
+  <p class="sub">Each tool handles one Q2C task in the browser, usually with no signup. A tool is the practical partner of a blog post: the post explains the task, the tool does it. <a href="https://revexos.com/tools">revexos.com/tools</a></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Quote</h3>
+      <div class="pill-row"><span class="pill">Quote and estimate generator</span><span class="pill">Proposal generator</span><span class="pill">Rate card to quote</span><span class="pill">Payment terms generator</span><span class="pill">Client lifetime value</span><span class="pill">Billing platform selector</span><span class="pill">Merchant of Record selector</span></div>
+    </div>
+    <div class="card">
+      <h3>Order and invoice</h3>
+      <div class="pill-row"><span class="pill">Invoice generator</span><span class="pill">Invoice parser</span><span class="pill">PO to invoice</span><span class="pill">PO vs invoice check</span><span class="pill">3-way match checker</span><span class="pill">Proration calculator</span></div>
+    </div>
+    <div class="card">
+      <h3>Cash</h3>
+      <div class="pill-row"><span class="pill">Invoice vs payment reconciliation</span><span class="pill">When will I get paid?</span><span class="pill">Late payment interest</span><span class="pill">AR collections email generator</span><span class="pill">Payment terms benchmarker</span></div>
+    </div>
+    <div class="card">
+      <h3>Whole cycle</h3>
+      <div class="pill-row"><span class="pill">Q2C cycle simulator</span><span class="pill">Q2C stack checker</span><span class="pill">Startup revenue intelligence</span><span class="pill">Jev API playground</span></div>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:14px">The generators connect: a proposal or quote turns into an invoice with the same line items, and a PO can pre-fill an invoice. Together they make a free, end-to-end quote-to-invoice stack. The AR collections email generator is also available inside Claude through the <a href="https://revexos.com/mcp">RevExOS MCP connector</a>.</p>
+</section>
+
+<!-- GUIDES -->
+<section id="guides">
+  <div class="section-head" style="--c:var(--c5)"><span class="dot"></span><h2>Guides, playbooks and courses</h2></div>
+  <p class="sub">Longer material to keep and come back to. Guides are free downloads sent by email. Courses teach a full workflow from start to finish.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Guides and playbooks</h3>
+      <ul class="clean small">
+        <li><a href="https://revexos.com/dso-reduction-checklist">DSO Reduction Checklist</a></li>
+        <li><a href="https://revexos.com/ar-prompt-playbook">AR Prompt Playbook</a></li>
+        <li><a href="https://revexos.com/ar-automation-claude-playbook">AR Automation Playbook (with Claude)</a></li>
+        <li><a href="https://revexos.com/ar-invoicing-ai-guide">AR Invoicing Starter Guide</a></li>
+        <li><a href="https://revexos.com/ar-calling-tracker">AR Calling Automation Tracker</a></li>
+        <li><a href="https://revexos.com/o2c-automation-guide">O2C Automation Guide</a></li>
+      </ul>
+    </div>
+    <div class="card"><h3>Courses</h3>
+      <ul class="clean small">
+        <li>How to Automate AR Invoicing with AI</li>
+        <li>The Claude AR Automation Playbook</li>
+      </ul>
+      <p class="small muted"><a href="https://revexos.com/courses">revexos.com/courses</a></p>
+    </div>
+    <div class="card"><h3>Newsletter</h3>
+      <p class="small">New posts and tools, summarized. For readers who want to keep up without checking the site. <a href="https://revexos.com/newsletter">revexos.com/newsletter</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head" style="--c:var(--c6)"><span class="dot"></span><h2>Services</h2></div>
+  <p class="sub">For readers who would rather have the work done for them. Each services page covers one area of Q2C and links to the case studies that show that work.</p>
+  <div class="pill-row">
+    <a class="pill" href="https://revexos.com/ar-automation">AR automation</a>
+    <a class="pill" href="https://revexos.com/invoice-automation">Invoice automation</a>
+    <a class="pill" href="https://revexos.com/quote-automation">Quote automation</a>
+    <a class="pill" href="https://revexos.com/q2c-integration">Q2C integration</a>
+    <a class="pill" href="https://revexos.com/gtm-engineering">GTM engineering</a>
+    <a class="pill" href="https://revexos.com/free-q2c-audit">Free Q2C audit</a>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <h2>How the pieces connect</h2>
+  <p class="sub">A typical reader path. Every page links to the next useful step, so readers can start anywhere.</p>
+  <div class="journey">
+    <div class="step"><div class="k">1. Ask</div><h3>Blog post</h3><p>"Why is our DSO so high?" leads to an answer-first post.</p></div>
+    <div class="step"><div class="k">2. Orient</div><h3>Platform page</h3><p>"We use QuickBooks and HubSpot" leads to what breaks in that stack.</p></div>
+    <div class="step"><div class="k">3. Try</div><h3>Free tool</h3><p>Benchmark payment terms or draft a collections email.</p></div>
+    <div class="step"><div class="k">4. Trust</div><h3>Case study</h3><p>See the same problem solved on a similar stack.</p></div>
+    <div class="step"><div class="k">5. Act</div><h3>Guide or audit</h3><p>Download the playbook, or ask for a free Q2C audit.</p></div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>Editorial principles</h3>
+    <ul class="clean small">
+      <li><b>Teach first, sell second.</b> Content that genuinely helps gets cited. Sales pitches do not.</li>
+      <li><b>Deep and specific.</b> Named tools, real workflows, real numbers. No generic overviews.</li>
+      <li><b>Written for search engines and AI assistants.</b> Clear questions, direct answers, structured FAQs.</li>
+      <li><b>Plain, direct prose.</b> No filler.</li>
+      <li><b>Everything is connected.</b> Posts, platforms, tools and case studies link to each other around the Q2C stages.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">RevExOS · <a href="https://revexos.com">revexos.com</a> · <a href="https://revexos.com/blog">Blog</a> · <a href="https://revexos.com/tools">Tools</a> · <a href="https://revexos.com/case-studies">Case studies</a> · <a href="https://www.linkedin.com/company/68577899">LinkedIn</a></div>
+</footer>
+</body>
+</html>
